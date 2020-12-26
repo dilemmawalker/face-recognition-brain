@@ -12,7 +12,7 @@ import './App.css';
 
 //You must add your own API key here from Clarifai.
 const app = new Clarifai.App({
- apiKey: 'YOUR API KEY HERE'
+ apiKey: 'a7a00e98572c4cb0bf7a7801956393a7'
 });
 
 const particlesOptions = {
@@ -27,24 +27,32 @@ const particlesOptions = {
   }
 }
 
+const initialstate={
+  input: '',
+  imageUrl: '',
+  box: {},
+  route: 'signin',
+  isSignedIn: false,
+  user: {
+    id: '',
+    name: '',
+    email: '',
+    entries: 0,
+    joined: ''
+  }
+}
+
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      input: '',
-      imageUrl: '',
-      box: {},
-      route: 'signin',
-      isSignedIn: false,
-      user: {
-        id: '',
-        name: '',
-        email: '',
-        entries: 0,
-        joined: ''
-      }
-    }
+    this.state = initialstate
   }
+
+  // componentDidMount(){
+  //     fetch('http://localhost:3000/')
+  //     .then(response => response.json())
+  //     .then(console.log())
+  // }
 
   loadUser = (data) => {
     this.setState({user: {
@@ -115,7 +123,7 @@ class App extends Component {
 
   onRouteChange = (route) => {
     if (route === 'signout') {
-      this.setState({isSignedIn: false})
+      this.setState({initialstate})
     } else if (route === 'home') {
       this.setState({isSignedIn: true})
     }
